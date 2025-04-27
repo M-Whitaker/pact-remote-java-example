@@ -26,8 +26,8 @@ docker run --rm -p 8081:8081 -v $(pwd):/tmp/app pactfoundation/pact-cli:latest m
 ## Run out of process tests
 
 ```shell
-./gradlew bootRun --args='--spring.profiles.active=local'
-./gradlew test
+./gradlew :consumer:app:bootRun --args='--spring.profiles.active=local'
+./gradlew :consumer:integration-test:test
 ```
 
 ## Publish Pacts
@@ -37,6 +37,16 @@ docker run --rm -v $(pwd):/tmp/app pactfoundation/pact-cli:latest publish \
 /tmp/app/pacts \
 --broker-base-url=http://host.docker.internal:9292 \
 --consumer-app-version=1.0.0-SNAPSHOT
+```
+
+## Verify Pacts
+
+```shell
+docker run --rm \
+    -p 8083:8083 \
+    -e PORT="8083" \
+    mccutchen/go-httpbin:latest
+./gradlew :producer:integration-test:test
 ```
 
 ## Run pacts

@@ -1,4 +1,5 @@
-rootProject.name = 'pact-consumer-api'
+rootProject.name = 'pact-remote-java-example'
 
-include 'app'
-include 'integration-test'
+include ':consumer:app'
+include ':consumer:integration-test'
+include ':producer:integration-test'

@@ -16,7 +16,8 @@ class ExampleTest {
         .get("http://localhost:8080/demo")
         .then()
         .statusCode(200)
-        .body("foo", equalTo("bar"));
+        .body("foo", equalTo("bar"))
+        .body("remoteHost", equalTo("go-httpbin"));
   }
 
 }

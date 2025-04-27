@@ -14,8 +14,8 @@ public class HttpBinClient {
     this.webClient = webClientBuilder.baseUrl(baseUrl).build();
   }
 
-  public Mono<String> anything() {
-      return webClient.get().uri("/anything").retrieve().bodyToMono(String.class);
+  public Mono<HostNameModel> hostName() {
+      return webClient.get().uri("/hostname").retrieve().bodyToMono(HostNameModel.class);
   }
 
 }

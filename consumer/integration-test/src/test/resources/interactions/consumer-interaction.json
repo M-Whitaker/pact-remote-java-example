@@ -1,0 +1,16 @@
+{
+  "description": "hostname httpbin",
+  "request": {
+    "path": "/hostname",
+    "method": "GET"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "hostname": "go-httpbin"
+    }
+  }
+}
