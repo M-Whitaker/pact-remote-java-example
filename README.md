@@ -57,3 +57,55 @@ http://host.docker.internal:9292/pacts/provider/Bar/consumer/Foo/version/1.0.0-S
 --host 0.0.0.0 \
 --port 8082
 ```
+
+## Can I Deploy?
+
+https://docs.pact.io/pact_broker/recording_deployments_and_releases
+
+### Create Environments
+
+```shell
+docker run --rm pactfoundation/pact-cli:latest pact-broker \
+create-environment --name uat --display-name UAT --no-production \
+--broker-base-url=http://host.docker.internal:9292
+```
+
+### Deploy Consumer as Baseline
+
+```shell
+docker run --rm pactfoundation/pact-cli:latest pact-broker \
+record-deployment --pacticipant Foo --version 1.0.0-SNAPSHOT --environment uat \
+--broker-base-url=http://host.docker.internal:9292
+```
+
+### Can I deploy a new Consumer?
+
+```shell
+docker run --rm -v $(pwd):/tmp/app pactfoundation/pact-cli:latest publish \
+/tmp/app/pacts \
+--broker-base-url=http://host.docker.internal:9292 \
+--consumer-app-version=1.0.0-SNAPSHOT
+docker run --rm pactfoundation/pact-cli:latest pact-broker \
+can-i-deploy --pacticipant Foo --version 1.1.0-SNAPSHOT --to-environment uat \
+--broker-base-url=http://host.docker.internal:9292
+```
+
+Failed!
+
+### Deploy Producer to satisfy contract in Environment
+
+```shell
+docker run --rm pactfoundation/pact-cli:latest pact-broker \
+record-deployment --pacticipant Bar --version 0.0.1-SNAPSHOT --environment uat \
+--broker-base-url=http://host.docker.internal:9292
+```
+
+### Can I deploy a new Consumer now?
+
+```shell
+docker run --rm pactfoundation/pact-cli:latest pact-broker \
+can-i-deploy --pacticipant Foo --version 1.1.0-SNAPSHOT --to-environment uat \
+--broker-base-url=http://host.docker.internal:9292
+```
+
+Success!

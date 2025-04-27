@@ -27,6 +27,7 @@ dependencies {
 tasks.named('test') {
 	configure {
 		systemProperties['pact.verifier.publishResults'] = 'true'
+		systemProperties['pact.provider.version'] = "${version}"
 	}
 	useJUnitPlatform()
 }
