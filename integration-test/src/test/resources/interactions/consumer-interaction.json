@@ -1,0 +1,46 @@
+{
+  "description": "anything httpbin",
+  "request": {
+    "path": "/anything",
+    "method": "GET"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "args": {
+      },
+      "headers": {
+        "Accept": [
+          "*/*"
+        ],
+        "Accept-Encoding": [
+          "gzip"
+        ],
+        "Host": [
+          "localhost"
+        ],
+        "User-Agent": [
+          "ReactorNetty/1.2.4"
+        ],
+        "Via": [
+          "1.1 fly.io, 1.1 fly.io"
+        ],
+        "X-Request-Start": [
+          "t=1745266462626624"
+        ]
+      },
+      "method": "GET",
+      "origin": "81.103.45.86",
+      "url": "http://localhost:8081/anything",
+      "data": "",
+      "files": {
+      },
+      "form": {
+      },
+      "json": null
+    }
+  }
+}

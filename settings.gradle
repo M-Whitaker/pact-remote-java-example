@@ -1,0 +1,4 @@
+rootProject.name = 'pact-consumer-api'
+
+include 'app'
+include 'integration-test'
